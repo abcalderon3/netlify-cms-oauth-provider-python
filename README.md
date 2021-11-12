@@ -76,7 +76,7 @@ gcloud functions deploy FUNCTION_NAME --runtime=python37 --entry-point=cloud_run
 |REDIRECT_URL|Authorization Callback URL provided during the GitHub OAuth App registration, i.e., <*Function Endpoint URL*>`/callback`|https://`project-url`.cloudfunctions.net/`function-name`/callback|
 |STATE_STORAGE_COLLECTION|[*Optional*] Path to the Firestore Collection designated for temporary state storage (see below).|`collection-name`/oauth_state_storage/states|
 |SSL_ENABLED|[*Local Only*] `Boolean` Toggles SSL during OAuth Authentication Flow. Should only be disabled during local development testing.|1|
-|SCOPES|GitHub oauth scopes, defaults to `public_repo,read:user`.|`repo,read:user`| 
+|SCOPES|GitHub oauth scopes, defaults to `public_repo,read:user`.|`read:user,repo`| 
 
 ### State Storage (Optional)
 For additional security, you may configure the component to utilize Google Cloud Firestore to temporarily store a user's state during their authentication session. The state is a random value passed between the OAuth Client (this component) and the OAuth Provider (GitHub) as a mechanism to protect against Cross-Site Request Forgery (CSRF) vulnerability.
