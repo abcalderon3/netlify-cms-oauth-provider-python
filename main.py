@@ -22,11 +22,12 @@ ssl_enabled = os.environ.get('SSL_ENABLED', '1')
 
 def index(request):
     """ Show a log in with github link """
-    print([request.path, request.full_path, request.script_root, request.base_url, request.url, request.url_root])
+    print(["INDEX:", request.path, request.full_path, request.script_root, request.base_url, request.url, request.url_root])
     return f'Hello<br><a href="{request.url_root}auth">Log in with Github</a>'
 
 
 def auth():
+    print(["AUTH"])
     if state_management_enabled():
         # Generates Authorization URL for Github, including a state for CSRF protection
         state = create_state()
@@ -42,6 +43,7 @@ def auth():
 
 def callback(request):
     state = request.args.get('state', 'No_state')
+    print(["CALLBACK", state])
     if state_management_enabled():
         # Check the state to protect against CSRF
         if not validate_state(state):
@@ -60,6 +62,7 @@ def callback(request):
     except BaseException as e:
         message = 'error'
         content = str(e)
+    print(["CALLBACK TOKEN", message, content])
     post_message = json.dumps('authorization:github:{0}:{1}'.format(message, content))
     return """<html><body><script>
     (function() {
@@ -84,6 +87,7 @@ def success():
 
 
 def cloud_run(request):
+    print(["RUN", request.path])
     function_enabled = os.environ.get('FUNCTION_ENABLED', 0)
     if not function_enabled == '1':
         return abort(404)
