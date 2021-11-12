@@ -27,7 +27,6 @@ def index(request):
 
 
 def auth():
-    print(["AUTH"])
     if state_management_enabled():
         # Generates Authorization URL for Github, including a state for CSRF protection
         state = create_state()
