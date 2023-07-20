@@ -98,7 +98,7 @@ backend:
   repo: user/repo   # Path to your GitHub repository
   branch: master    # Branch for Netlify CMS to create Pull Requests against
   base_url: <Function Endpoint Base URL>   # Base URL extracted from the Cloud Function Endpoint URL
-  auth: <Function Name>/auth
+  auth_endpoint: <Function Name>/auth
 ```
 
 You will extract parts of the Cloud Function's Endpoint URL into configuration settings in Netlify CMS. The *Endpoint URL* should have the following format:  
@@ -108,7 +108,7 @@ https://YOUR_REGION-YOUR_PROJECT_ID.cloudfunctions.net/FUNCTION_NAME
 
 So, the configuration parameters should be something like:
 * `base_url: https://YOUR_REGION-YOUR_PROJECT_ID.cloudfunctions.net`
-* `auth: FUNCTION_NAME/auth`
+* `auth_endpoint: FUNCTION_NAME/auth`
 
 
 Please note that `base_url` should not have trailing slashes.
